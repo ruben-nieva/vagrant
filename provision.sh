@@ -7,6 +7,15 @@ dpkg -i puppetlabs-release-trusty.deb
 apt-get update > /dev/null 2>&1
 apt-get install -y puppetmaster > /dev/null 2>&1
 
+#Commet out a deprecated line
+sed -e '/templatedir/s/^#*/#/' -i /etc/puppet/puppet.conf
+
 #Add to /etc/hosts
 echo "172.28.128.3  puppetserver.cba.corp.globant.com puppetserver" >> /etc/hosts
 echo "172.28.128.4  desktop.cba.corp.globant.com    desktop" >> /etc/hosts
+
+#Autosign config
+echo '*.corp.globant.com' > /etc/puppet/autosign.conf
+#/usr/bin/puppet config set autosign true --section master
+#/usr/bin/puppet resource service iptables ensure=stopped enable=false
+/usr/bin/puppet resource service puppetmaster ensure=running enable=true
