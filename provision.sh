@@ -19,3 +19,10 @@ echo '*.corp.globant.com' > /etc/puppet/autosign.conf
 #/usr/bin/puppet config set autosign true --section master
 #/usr/bin/puppet resource service iptables ensure=stopped enable=false
 /usr/bin/puppet resource service puppetmaster ensure=running enable=true
+
+#Download puppet modules
+#puppet module install -i /etc/puppet/modules puppetlabs-stdlib
+#puppet module install -i /etc/puppet/modules puppetlabs-apt
+#puppet module install -i /etc/puppet/modules elasticsearch-elasticsearch
+#puppet module install -i /etc/puppet/modules puppetlabs-mongodb
+
