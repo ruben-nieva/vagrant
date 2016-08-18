@@ -20,13 +20,23 @@ Vagrant.configure("2") do |config|
                 puppet.vm.provision "shell", path: "provision-server.sh"
         end
 
-## Setup for Puppet client
-        config.vm.define "mongo01" do |mongo01|
-                mongo01.vm.hostname = "graylog-mongo01"
-                mongo01.vm.box = "ubuntu/trusty64"
-                mongo01.vm.network "private_network", ip: "172.28.128.4"
-                #desktop.vm.network "private_network", type: "dhcp"
-                mongo01.vm.provision "shell", path: "provision-agent.sh"
-        end
+## Setup for mongodb01
+        # config.vm.define "mongo01" do |mongo01|
+        #         mongo01.vm.hostname = "graylog-mongo01"
+        #         mongo01.vm.box = "ubuntu/trusty64"
+        #         mongo01.vm.network "private_network", ip: "172.28.128.4"
+        #         #desktop.vm.network "private_network", type: "dhcp"
+        #         mongo01.vm.provision "shell", path: "provision-agent.sh"
+        # end
+
+# Setup for mongoDB servers
+         (1..3).each do |i|
+           config.vm.define "graylog-mongo0#{i}" do |mongo|
+             mongo.vm.box = "ubuntu/trusty64"
+             mongo.vm.hostname = "graylog-mongo0#{i}"
+             mongo.vm.network "private_network", ip: "172.28.128." + (3 + i.to_i).to_s
+             mongo.vm.provision "shell", path: "provision-agent.sh"
+           end
+         end
 
 end
