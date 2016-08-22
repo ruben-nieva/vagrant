@@ -30,13 +30,24 @@ Vagrant.configure("2") do |config|
         # end
 
 # Setup for mongoDB servers
-         (1..3).each do |i|
-           config.vm.define "graylog-mongo0#{i}" do |mongo|
-             mongo.vm.box = "ubuntu/trusty64"
-             mongo.vm.hostname = "graylog-mongo0#{i}"
-             mongo.vm.network "private_network", ip: "172.28.128." + (3 + i.to_i).to_s
-             mongo.vm.provision "shell", path: "provision-agent.sh"
-           end
-         end
+        #  (1..3).each do |i|
+        #    config.vm.define "mongo0#{i}" do |mongo|
+        #      mongo.vm.box = "ubuntu/trusty64"
+        #      mongo.vm.hostname = "graylog-mongo0#{i}"
+        #      mongo.vm.network "private_network", ip: "172.28.128." + (3 + i.to_i).to_s
+        #      mongo.vm.provision "shell", path: "provision-agent.sh"
+        #    end
+        #  end
+
+# elasticsearch
+  (1..1).each do |i|
+    config.vm.define "elastic0#{i}" do |node|
+      node.vm.box = "ubuntu/trusty64"
+      node.vm.hostname = "graylog-elasticsearch0#{i}"
+      node.vm.network "private_network", ip: "172.28.128." + (6 + i.to_i).to_s
+      node.vm.provision "shell", path: "provision-agent.sh"
+    end
+  end
+
 
 end

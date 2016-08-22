@@ -18,6 +18,9 @@ echo "172.28.128.3  puppetserver.cba.corp.globant.com puppetserver" | sudo tee -
 echo "172.28.128.4  graylog-mongo01.cba.corp.globant.com    graylog-mongo01" | sudo tee --append /etc/hosts 2> /dev/null
 echo "172.28.128.5  graylog-mongo02.cba.corp.globant.com    graylog-mongo02" | sudo tee --append /etc/hosts 2> /dev/null
 echo "172.28.128.6  graylog-mongo03.cba.corp.globant.com    graylog-mongo03" | sudo tee --append /etc/hosts 2> /dev/null
+#Elasticsearch
+echo "172.28.128.7  graylog-elasticsearch01.cba.corp.globant.com  graylog-elasticsearch01" | sudo tee --append /etc/hosts 2> /dev/null
+
 
 #Autosign config
 echo '*.corp.globant.com' > /etc/puppet/autosign.conf
@@ -27,12 +30,14 @@ echo '*.corp.globant.com' > /etc/puppet/autosign.conf
 
 #Download puppet modules
 puppet module install -i /etc/puppet/modules puppetlabs-stdlib
-puppet module install -i /etc/puppet/modules puppetlabs-apt
+#puppet module install -i /etc/puppet/modules puppetlabs-apt
+puppet module install puppetlabs-java
 puppet module install -i /etc/puppet/modules elasticsearch-elasticsearch
 puppet module install -i /etc/puppet/modules puppetlabs-mongodb
+puppet module install puppet-archive
 
 # symlink manifest from Vagrant synced folder location
 ln -s /vagrant/manifests/site.pp /etc/puppet/manifests/site.pp
-ln -s /vagrant/manifests/nodes.pp /etc/puppet/manifests/nodes.pp
+#ln -s /vagrant/manifests/nodes.pp /etc/puppet/manifests/nodes.pp
 
 #End script

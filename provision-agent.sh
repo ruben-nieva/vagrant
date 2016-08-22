@@ -16,11 +16,15 @@ echo "172.28.128.3  puppetserver.cba.corp.globant.com puppetserver" | sudo tee -
 echo "172.28.128.4  graylog-mongo01.cba.corp.globant.com    graylog-mongo01" | sudo tee --append /etc/hosts 2> /dev/null
 echo "172.28.128.5  graylog-mongo02.cba.corp.globant.com    graylog-mongo02" | sudo tee --append /etc/hosts 2> /dev/null
 echo "172.28.128.6  graylog-mongo03.cba.corp.globant.com    graylog-mongo03" | sudo tee --append /etc/hosts 2> /dev/null
+#Elasticsearch
+echo "172.28.128.7  graylog-elasticsearch01.cba.corp.globant.com  graylog-elasticsearch01" | sudo tee --append /etc/hosts 2> /dev/null
 
 #Client config
 puppet config set --section main server  puppetserver.cba.corp.globant.com
+#Change the agent interval to check-in
+puppet config set --section agent runinterval  240
 sed -i 's/START=no/START=yes/g' /etc/default/puppet
 puppet resource service puppet ensure=running enable=true
 puppet agent --enable
 #Force the first connection with the master
-#puppet agent -t
+#puppet agent -t --verbose
