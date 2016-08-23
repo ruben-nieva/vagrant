@@ -15,14 +15,20 @@ class {'::mongodb::client':}
 
 }
 
-node 'graylog-elasticsearch01'{
+node 'graylog-elasticsearch01', 'graylog-elasticsearch02'{
+# include java8
 
-class { 'java':
-  distribution => 'oracle-jdk',
-#  version => 'latest',
+  class { 'jdk_oracle': }
+
+
+#class { 'elasticsearch':
+#  manage_repo  => true,
+#  repo_version => '2.x',
+#}
+
+#elasticsearch::instance { 'es-01': }
+
 }
-
-} 
 
 
 node 'default' {

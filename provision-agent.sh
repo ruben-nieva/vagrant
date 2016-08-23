@@ -12,12 +12,19 @@ sed -e '/templatedir/s/^#*/#/' -i /etc/puppet/puppet.conf
 
 #Add to /etc/hosts
 echo "# Host config for Puppet Master and Agent Nodes" | sudo tee --append /etc/hosts 2> /dev/null
-echo "172.28.128.3  puppetserver.cba.corp.globant.com puppetserver" | sudo tee --append /etc/hosts 2> /dev/null
-echo "172.28.128.4  graylog-mongo01.cba.corp.globant.com    graylog-mongo01" | sudo tee --append /etc/hosts 2> /dev/null
-echo "172.28.128.5  graylog-mongo02.cba.corp.globant.com    graylog-mongo02" | sudo tee --append /etc/hosts 2> /dev/null
-echo "172.28.128.6  graylog-mongo03.cba.corp.globant.com    graylog-mongo03" | sudo tee --append /etc/hosts 2> /dev/null
+echo "172.28.128.10  puppetserver.cba.corp.globant.com puppetserver" | sudo tee --append /etc/hosts 2> /dev/null
+#Mongodb Servers
+echo "172.28.128.11  graylog-mongo01.cba.corp.globant.com   graylog-mongo01" | sudo tee --append /etc/hosts 2> /dev/null
+echo "172.28.128.12 graylog-mongo02.cba.corp.globant.com    graylog-mongo02" | sudo tee --append /etc/hosts 2> /dev/null
+echo "172.28.128.13  graylog-mongo03.cba.corp.globant.com   graylog-mongo03" | sudo tee --append /etc/hosts 2> /dev/null
 #Elasticsearch
-echo "172.28.128.7  graylog-elasticsearch01.cba.corp.globant.com  graylog-elasticsearch01" | sudo tee --append /etc/hosts 2> /dev/null
+echo "172.28.128.21  graylog-elasticsearch01.cba.corp.globant.com  graylog-elasticsearch01" >> /etc/hosts
+echo "172.28.128.22  graylog-elasticsearch02.cba.corp.globant.com  graylog-elasticsearch02" >> /etc/hosts
+echo "172.28.128.23  graylog-elasticsearch03.cba.corp.globant.com  graylog-elasticsearch03" >> /etc/hosts
+#Graylog Servers
+echo "172.28.128.31  graylog-server01.cba.corp.globant.com  graylog-server01" >> /etc/hosts
+echo "172.28.128.32  graylog-server02.cba.corp.globant.com  graylog-server01" >> /etc/hosts
+echo "172.28.128.33  graylog-server03.cba.corp.globant.com  graylog-server01" >> /etc/hosts
 
 #Client config
 puppet config set --section main server  puppetserver.cba.corp.globant.com
