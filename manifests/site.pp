@@ -17,8 +17,7 @@ class {'::mongodb::client':}
 
 node 'graylog-elasticsearch01', 'graylog-elasticsearch02'{
 # include java8
-
-  class { 'jdk_oracle': }
+#  class { 'jdk_oracle': }
 
 
 #class { 'elasticsearch':

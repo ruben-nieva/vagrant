@@ -23,8 +23,12 @@ echo "172.28.128.22  graylog-elasticsearch02.cba.corp.globant.com  graylog-elast
 echo "172.28.128.23  graylog-elasticsearch03.cba.corp.globant.com  graylog-elasticsearch03" >> /etc/hosts
 #Graylog Servers
 echo "172.28.128.31  graylog-server01.cba.corp.globant.com  graylog-server01" >> /etc/hosts
-echo "172.28.128.32  graylog-server02.cba.corp.globant.com  graylog-server01" >> /etc/hosts
-echo "172.28.128.33  graylog-server03.cba.corp.globant.com  graylog-server01" >> /etc/hosts
+echo "172.28.128.32  graylog-server02.cba.corp.globant.com  graylog-server02" >> /etc/hosts
+echo "172.28.128.33  graylog-server03.cba.corp.globant.com  graylog-server03" >> /etc/hosts
+#Graylog Webs
+echo "172.28.128.41  graylog-web01.cba.corp.globant.com  graylog-web01" >> /etc/hosts
+echo "172.28.128.42  graylog-web02.cba.corp.globant.com  graylog-web02" >> /etc/hosts
+echo "172.28.128.43  graylog-web03.cba.corp.globant.com  graylog-web03" >> /etc/hosts
 
 #Client config
 puppet config set --section main server  puppetserver.cba.corp.globant.com
