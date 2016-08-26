@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
          end
 
 # elasticsearch
-  (1..2).each do |i|
+  (1..3).each do |i|
     config.vm.define "elastic0#{i}" do |node|
       node.vm.box = "ubuntu/trusty64"
       node.vm.provider "virtualbox" do |vb|
