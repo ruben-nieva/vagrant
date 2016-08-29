@@ -78,6 +78,7 @@ Vagrant.configure("2") do |config|
           end
           node.vm.hostname = "graylog-web0#{i}"
           node.vm.network "private_network", ip: "172.28.128." + (40 + i.to_i).to_s
+          #node.vm.network :forwarded_port, guest: 20900, host: 20900
           node.vm.provision "shell", path: "provision-agent.sh"
           node.vm.provision "shell", path: "provision-graylog-web.sh"
         end
